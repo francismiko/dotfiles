@@ -1,0 +1,25 @@
+# =============================================================================
+# Oh My Zsh 配置
+# =============================================================================
+
+# Oh My Zsh 安装路径
+export ZSH="$HOME/.oh-my-zsh"
+
+# 主题配置
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# 插件配置 - 根据需要启用
+plugins=(
+    git                    # Git 别名和函数
+    # docker               # Docker 补全(按需启用)
+    # brew                 # Homebrew 补全(按需启用)
+)
+
+# 性能优化
+DISABLE_UNTRACKED_FILES_DIRTY="true"  # 大型仓库加速
+
+# 加载 Oh My Zsh
+source $ZSH/oh-my-zsh.sh
+
+# 加载 Powerlevel10k 配置
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

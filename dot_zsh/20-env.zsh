@@ -1,0 +1,22 @@
+# =============================================================================
+# 环境变量配置
+# =============================================================================
+
+# 语言环境
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# 编辑器配置
+export EDITOR='vim'
+export VISUAL='vim'
+
+# 历史记录配置
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE="$HOME/.zsh_history"
+
+# 启用历史记录共享
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
