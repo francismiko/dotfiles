@@ -1,6 +1,11 @@
 # =============================================================================
-# Powerlevel10k Instant Prompt
+# Powerlevel10k Instant Prompt (chezmoi 模板)
+#
 # 必须在配置文件最前面加载,以实现即时提示符
+#
+# 模板说明:
+#   - 当前基于 Mac Mini ({{ .chezmoi.hostname }}) 配置
+#   - 所有机器通用配置
 # =============================================================================
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
