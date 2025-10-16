@@ -7,9 +7,6 @@
 .zsh/99-local.zsh
 .zshrc.local
 
-# Obsidian 知识库(不应同步到 dotfiles)
-Obsidian-Vault/
-
 # 备份文件
 *.backup
 *~

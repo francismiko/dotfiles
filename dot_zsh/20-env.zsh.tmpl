@@ -1,6 +1,4 @@
-# =============================================================================
 # 环境变量配置
-# =============================================================================
 
 # 语言环境
 export LANG=en_US.UTF-8
@@ -23,4 +21,4 @@ setopt HIST_FIND_NO_DUPS
 
 # SSH Agent 配置 (Secretive)
 # Secretive 使用 Secure Enclave 安全芯片存储 SSH 密钥
-export SSH_AUTH_SOCK=/Users/francis/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+export SSH_AUTH_SOCK={{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
