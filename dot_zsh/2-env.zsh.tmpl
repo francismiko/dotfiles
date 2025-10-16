@@ -20,32 +20,8 @@ setopt HIST_FIND_NO_DUPS
 # SSH Agent 配置 (Secretive)
 export SSH_AUTH_SOCK={{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
-# ============================================================
-# 以下为可选配置（根据需求取消注释）
-# ============================================================
-
 # 代理配置
-# export http_proxy="http://127.0.0.1:7890"
-# export https_proxy="http://127.0.0.1:7890"
-# export all_proxy="socks5://127.0.0.1:7890"
-# export no_proxy="localhost,127.0.0.1"
-
-# 颜色支持
-# export CLICOLOR=1
-# export LSCOLORS=ExFxCxDxBxegedabagacad
-
-# Man 手册页颜色
-# export LESS_TERMCAP_mb=$'\e[1;32m'      # 开始闪烁
-# export LESS_TERMCAP_md=$'\e[1;32m'      # 开始粗体
-# export LESS_TERMCAP_me=$'\e[0m'         # 结束所有模式
-# export LESS_TERMCAP_se=$'\e[0m'         # 结束突出显示
-# export LESS_TERMCAP_so=$'\e[01;33m'     # 开始突出显示
-# export LESS_TERMCAP_ue=$'\e[0m'         # 结束下划线
-# export LESS_TERMCAP_us=$'\e[1;4;31m'    # 开始下划线
-
-# Pager 配置
-# export PAGER='less'
-# export LESS='-R -i -M'
-
-# GPG TTY 配置（用于 GPG 签名）
-# export GPG_TTY=$(tty)
+export http_proxy="http://127.0.0.1:7890"
+export https_proxy="http://127.0.0.1:7890"
+export all_proxy="socks5://127.0.0.1:7890"
+export no_proxy="localhost,127.0.0.1"
