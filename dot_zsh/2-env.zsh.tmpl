@@ -20,8 +20,8 @@ setopt HIST_FIND_NO_DUPS
 # SSH Agent 配置 (Secretive)
 export SSH_AUTH_SOCK={{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
-# 代理配置
-export http_proxy="http://127.0.0.1:7890"
-export https_proxy="http://127.0.0.1:7890"
-export all_proxy="socks5://127.0.0.1:7890"
+# 代理配置 (Clash Verge)
+export http_proxy="http://127.0.0.1:7897"
+export https_proxy="http://127.0.0.1:7897"
+export all_proxy="socks5://127.0.0.1:7897"
 export no_proxy="localhost,127.0.0.1"
