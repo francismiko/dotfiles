@@ -14,6 +14,21 @@
 [user]
 	name = francismiko
 	email = 1485059943@qq.com
+	# SSH 签名密钥 (Secretive 管理)
+	# 使用内联公钥格式 (key:: 前缀)
+	signingkey = key::ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLNMmKvfSE5a3oEG/n4p3jAOzCQCPGy4nyqnMJmoWOouMBSC7YEXjBtjyMHmLuKAYPCemLdJgIeVs+KOFFnBqYM=
+
+[commit]
+	# 自动对所有提交进行签名
+	gpgsign = true
+
+[gpg]
+	# 使用 SSH 格式签名 (而非传统 GPG)
+	format = ssh
+
+[gpg "ssh"]
+	# 允许的签名者列表文件
+	allowedSignersFile = ~/.gitallowedsigners
 
 [pull]
 	rebase = false

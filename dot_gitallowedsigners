@@ -1,0 +1,9 @@
+# =============================================================================
+# Git 允许的签名者列表
+#
+# 格式: <email> <key-type> <public-key> <comment>
+# 用途: 验证 Git 提交签名的合法性
+# 管理: 由 Secretive 生成的 SSH 公钥
+# =============================================================================
+
+1485059943@qq.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLNMmKvfSE5a3oEG/n4p3jAOzCQCPGy4nyqnMJmoWOouMBSC7YEXjBtjyMHmLuKAYPCemLdJgIeVs+KOFFnBqYM= zhichengfan18@gmail.com
