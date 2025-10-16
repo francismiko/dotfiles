@@ -1,6 +1,8 @@
 # =============================================================================
 # PATH 配置
 # 按优先级从高到低排序
+#
+# 注意: Homebrew PATH 配置在 .zprofile 中（登录 shell 时加载）
 # =============================================================================
 
 # 用户自定义二进制文件路径
@@ -11,8 +13,3 @@ fi
 if [[ -d "$HOME/.local/bin" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
-
-# Homebrew 路径(如果需要)
-# if [[ -x "/opt/homebrew/bin/brew" ]]; then
-#     eval "$(/opt/homebrew/bin/brew shellenv)"
-# fi
