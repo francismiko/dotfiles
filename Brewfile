@@ -1,5 +1,6 @@
 tap "homebrew/services"
 brew "chezmoi"
+brew "gh"
 brew "tree"
 cask "claude-code"
 cask "font-monaspace"
