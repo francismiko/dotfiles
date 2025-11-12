@@ -1,27 +1,17 @@
-# 终端提示符配置
+# Powerlevel10k 终端提示符配置
 # 仅在非 Warp 终端中启用（Warp 有自己的主题）
 
 # 检测是否为 Warp 终端
 if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
-    # 启用颜色和参数扩展
-    autoload -Uz colors && colors
-    setopt PROMPT_SUBST
+    # Powerlevel10k instant prompt（必须在最开始加载）
+    # 启用此功能可以加快终端启动速度
+    if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+        source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    fi
 
-    # Git 分支显示函数
-    git_branch() {
-        local branch
-        branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-        if [[ -n "$branch" ]]; then
-            echo " %F{yellow}($branch)%f"
-        fi
-    }
+    # 加载 Powerlevel10k 主题
+    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
-    # 配置提示符
-    # 格式: [用户@主机 目录] (git分支)
-    # $
-    PROMPT='%F{cyan}[%n@%m %~]%f$(git_branch)
-%# '
-
-    # 右侧提示符（可选，显示时间）
-    # RPROMPT='%F{242}%*%f'
+    # 加载 Powerlevel10k 配置（如果存在）
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
