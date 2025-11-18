@@ -4,11 +4,12 @@
 # 模板变量:
 #   .chezmoi.hostname  - 当前主机名 ({{ .chezmoi.hostname }})
 #   .chezmoi.os        - 操作系统 ({{ .chezmoi.os }})
+#   .is_server         - 是否为服务器 ({{ .is_server }})
+#   .is_work           - 是否为工作电脑 ({{ .is_work }})
 #
 # 使用说明:
-#   - 此文件是模板,会根据不同机器生成不同配置
+#   - 此文件是模板，会根据不同机器生成不同配置
 #   - 修改请使用: chezmoi edit ~/.gitconfig
-#   - 当前基于 Mac Mini 配置
 # =============================================================================
 
 [user]
