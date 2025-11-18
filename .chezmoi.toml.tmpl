@@ -1,0 +1,23 @@
+{{- $machine_role := "unknown" -}}
+{{- $is_server := false -}}
+{{- $is_work := false -}}
+{{- $is_personal := true -}}
+
+{{- if eq .chezmoi.hostname "Mac-mini" -}}
+{{-   $machine_role = "home-server" -}}
+{{-   $is_server = true -}}
+{{- else if eq .chezmoi.hostname "Francis-MacBook-Air" -}}
+{{-   $machine_role = "personal-laptop" -}}
+{{- else if hasPrefix "work-" .chezmoi.hostname -}}
+{{-   $machine_role = "work-laptop" -}}
+{{-   $is_work = true -}}
+{{-   $is_personal = false -}}
+{{- else -}}
+{{-   $machine_role = "client" -}}
+{{- end -}}
+
+[data]
+    machine_role = {{ $machine_role | quote }}
+    is_server = {{ $is_server }}
+    is_work = {{ $is_work }}
+    is_personal = {{ $is_personal }}

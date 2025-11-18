@@ -3,7 +3,7 @@
 # This won't be added again if you remove it.
 Include ~/.orbstack/ssh/config
 
-{{ if ne .chezmoi.hostname "Mac-mini" -}}
+{{ if not .is_server -}}
 Host Mac-mini.local
 	HostName Mac-mini.local
 	User francis
