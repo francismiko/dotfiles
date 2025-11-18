@@ -3,5 +3,10 @@
 # This won't be added again if you remove it.
 Include ~/.orbstack/ssh/config
 
+{{ if ne .chezmoi.hostname "Mac-mini" -}}
+Host Mac-mini.local
+	HostName Mac-mini.local
+
+{{ end -}}
 Host *
 	IdentityAgent {{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
