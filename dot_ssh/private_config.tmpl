@@ -6,6 +6,11 @@ Include ~/.orbstack/ssh/config
 {{ if ne .chezmoi.hostname "Mac-mini" -}}
 Host Mac-mini.local
 	HostName Mac-mini.local
+	User francis
+	ForwardAgent yes
+	ServerAliveInterval 60
+	ServerAliveCountMax 3
+	TCPKeepAlive yes
 
 {{ end -}}
 Host *
