@@ -1,23 +1,51 @@
+{{- /* Machine role detection and configuration template */ -}}
+{{- /* This template is executed during 'chezmoi init' to generate ~/.config/chezmoi/chezmoi.toml */ -}}
+
+{{- /* Initialize default values */ -}}
 {{- $machine_role := "unknown" -}}
 {{- $is_server := false -}}
 {{- $is_work := false -}}
 {{- $is_personal := true -}}
+{{- $is_headless := false -}}
+{{- $is_ephemeral := false -}}
 
-{{- if eq .chezmoi.hostname "Mac-mini" -}}
+{{- /* Detect special environments (Docker, Codespaces, VMs, etc.) */ -}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") -}}
+{{-   $is_ephemeral = true -}}
+{{-   $is_headless = true -}}
+{{-   $machine_role = "container" -}}
+{{- else if eq (env "container") "docker" -}}
+{{-   $is_ephemeral = true -}}
+{{-   $machine_role = "docker" -}}
+{{- else if or (eq .chezmoi.username "vagrant") (eq .chezmoi.username "ubuntu") -}}
+{{-   $is_ephemeral = true -}}
+{{-   $machine_role = "vm" -}}
+{{- else if eq .chezmoi.hostname "Mac-mini" -}}
 {{-   $machine_role = "home-server" -}}
 {{-   $is_server = true -}}
+{{-   $is_headless = true -}}
 {{- else if eq .chezmoi.hostname "Francis-MacBook-Air" -}}
 {{-   $machine_role = "personal-laptop" -}}
+{{-   $is_personal = true -}}
 {{- else if hasPrefix "work-" .chezmoi.hostname -}}
 {{-   $machine_role = "work-laptop" -}}
 {{-   $is_work = true -}}
 {{-   $is_personal = false -}}
 {{- else -}}
-{{-   $machine_role = "client" -}}
+{{-   $machine_role = promptStringOnce . "machine_role" "Machine role (personal-laptop/home-server/work-laptop)" "personal-laptop" -}}
+{{-   $is_server = promptBoolOnce . "is_server" "Is this a server" -}}
+{{-   $is_work = promptBoolOnce . "is_work" "Is this a work machine" -}}
+{{-   $is_personal = not $is_work -}}
+{{-   $is_headless = promptBoolOnce . "is_headless" "Is this a headless machine (no display)" -}}
 {{- end -}}
 
 [data]
     machine_role = {{ $machine_role | quote }}
+    hostname = {{ .chezmoi.hostname | quote }}
     is_server = {{ $is_server }}
     is_work = {{ $is_work }}
     is_personal = {{ $is_personal }}
+    is_headless = {{ $is_headless }}
+    is_ephemeral = {{ $is_ephemeral }}
+    os = {{ .chezmoi.os | quote }}
+    arch = {{ .chezmoi.arch | quote }}
