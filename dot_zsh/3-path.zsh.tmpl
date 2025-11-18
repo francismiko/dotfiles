@@ -8,3 +8,8 @@ fi
 if [[ -d "$HOME/.local/bin" ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
+
+# VS Code CLI
+if [[ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]]; then
+    export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+fi
