@@ -17,7 +17,7 @@
 	# SSH 签名密钥 (Secretive 管理)
 	# 动态从 Secretive 读取当前机器的公钥
 	# 使用 key:: 前缀格式
-	signingkey = key::{{ output "ssh-add" "-L" | trimSpace }}
+	signingkey = key::{{ output "ssh-add" "-L" | trim }}
 
 [commit]
 	# 自动对所有提交进行签名
