@@ -47,6 +47,6 @@ cask "warp"                   # Warp 终端
 # ========================================
 # Mac Mini 特有配置
 # ========================================
-{{- if eq .chezmoi.hostname "Mac-mini" }}
+{{- if .is_server }}
 cask "macfuse"                # 文件系统挂载工具（SSHFS、NTFS 等）
 {{- end }}
