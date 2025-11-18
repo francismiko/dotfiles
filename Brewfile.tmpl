@@ -1,0 +1,52 @@
+# ========================================
+# Homebrew 包管理配置
+# ========================================
+# 最后更新: 2025-11-18
+# 管理方式: chezmoi 模板，根据主机名自动适配
+# 主机: Mac-mini (Mac Mini M4) | Francis-MacBook-Air (MacBook Air)
+# ========================================
+
+# ========================================
+# Formulas - 命令行工具
+# ========================================
+
+# 核心工具
+brew "chezmoi"                # Dotfiles 管理工具
+brew "tree"                   # 目录树查看工具
+
+# 开发工具
+brew "biome"                  # Web 项目格式化和检查工具
+brew "gh"                     # GitHub CLI 命令行工具
+
+# Shell 增强
+brew "powerlevel10k"          # Zsh 主题（用于 .p10k.zsh 配置）
+
+# ========================================
+# Casks - 应用程序（所有机器共用）
+# ========================================
+
+# 开发工具
+cask "claude-code"            # Claude Code 编辑器
+cask "codex"                  # 代码片段管理工具
+
+# 字体
+cask "font-maple-mono-nf-cn"     # Maple Mono 字体（Nerd Font 中文支持）
+cask "font-maple-mono-nl-nf-cn"  # Maple Mono 无连字版本（Nerd Font 中文支持）
+
+# 系统工具
+cask "mos"                    # 鼠标增强工具（平滑滚动）
+cask "raycast"                # 效率启动器（Spotlight 替代品）
+
+# 容器与虚拟化
+cask "orbstack"               # Docker/Linux 虚拟机
+
+# 终端与 SSH
+cask "secretive"              # SSH 密钥管理（使用 Secure Enclave）
+cask "warp"                   # Warp 终端
+
+# ========================================
+# Mac Mini 特有配置
+# ========================================
+{{- if eq .chezmoi.hostname "Mac-mini" }}
+cask "macfuse"                # 文件系统挂载工具（SSHFS、NTFS 等）
+{{- end }}
