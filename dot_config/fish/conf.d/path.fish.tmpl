@@ -1,0 +1,18 @@
+# =============================================================================
+# PATH 配置
+# 注意: ServBay 的 PATH 配置需要单独处理
+# =============================================================================
+
+# 用户自定义路径
+if test -d $HOME/bin
+    fish_add_path $HOME/bin
+end
+
+if test -d $HOME/.local/bin
+    fish_add_path $HOME/.local/bin
+end
+
+# VS Code CLI
+if test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+    fish_add_path "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+end

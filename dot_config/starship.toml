@@ -1,0 +1,37 @@
+# =============================================================================
+# Starship Prompt 配置
+# 文档: https://starship.rs/config/
+# =============================================================================
+
+# 使用默认配置，后续按需自定义
+# 取消注释下方配置进行自定义
+
+# 格式化 prompt
+# format = """
+# $username\
+# $hostname\
+# $directory\
+# $git_branch\
+# $git_status\
+# $cmd_duration\
+# $line_break\
+# $character"""
+
+# 命令超时时间 (毫秒)
+# command_timeout = 500
+
+# [character]
+# success_symbol = "[❯](bold green)"
+# error_symbol = "[❯](bold red)"
+
+# [directory]
+# truncation_length = 3
+# truncate_to_repo = true
+
+# [git_branch]
+# symbol = " "
+
+# [git_status]
+# ahead = "⇡${count}"
+# behind = "⇣${count}"
+# diverged = "⇕⇡${ahead_count}⇣${behind_count}"

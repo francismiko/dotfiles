@@ -1,0 +1,20 @@
+# =============================================================================
+# Fish Shell 主配置文件
+#
+# 说明: 由 chezmoi 管理，conf.d/ 目录下的文件会自动加载
+# =============================================================================
+
+# Homebrew 环境配置
+if test -x /opt/homebrew/bin/brew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+
+# OrbStack 集成
+if test -f ~/.orbstack/shell/init.fish
+    source ~/.orbstack/shell/init.fish
+end
+
+# Starship prompt 初始化 (放在配置文件末尾)
+if type -q starship
+    starship init fish | source
+end
