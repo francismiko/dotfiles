@@ -1,66 +1,58 @@
-# Dotfiles
+# dotfiles
 
-个人配置文件，使用 [chezmoi](https://www.chezmoi.io/) 管理。
+[chezmoi](https://chezmoi.io) managed, template-based, multi-machine dotfiles.
 
-## 包含的配置
+## Structure
 
 ```
-Shell
-  .zshrc, .zprofile          Zsh 主配置
-  .zsh/                      模块化配置 (环境变量、别名、函数等)
-
-Git
-  .gitconfig                 Git 配置 (SSH 签名、代理)
-  .gitallowedsigners         SSH 签名验证列表
-
-SSH
-  .ssh/config                SSH 客户端配置 (Secretive + OrbStack)
-
-包管理
-  Brewfile                   Homebrew 包列表
+.
+├── dot_config/
+│   ├── fish/           # fish shell (conf.d/, config, plugins)
+│   └── starship.toml   # prompt theme (Tokyo Night)
+├── dot_zsh/            # zsh modules (1-9: prompt→env→path→aliases→...)
+├── dot_ssh/            # ssh config (Secretive + OrbStack)
+├── dot_gitconfig       # git (ssh signing, proxy)
+├── dot_gitallowedsigners
+└── Brewfile            # brew packages
 ```
 
-## 快速开始
-
-### 初次安装
+## Quick Start
 
 ```bash
-# 安装 chezmoi 并拉取配置
+# install + apply
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply francismiko
 
-# 或手动安装
+# or manually
 brew install chezmoi
-chezmoi init git@github.com:francismiko/dotfiles.git
-chezmoi apply
+chezmoi init git@github.com:francismiko/dotfiles.git --apply
 ```
 
-### 日常使用
+## Usage
 
-```bash
-# 编辑配置
-chezmoi edit ~/.zshrc
+| cmd | desc |
+|-----|------|
+| `chezmoi edit <file>` | edit source |
+| `chezmoi apply` | apply changes |
+| `chezmoi diff` | preview changes |
+| `chezmoi update` | pull + apply |
+| `chezmoi cd` | cd to source dir |
 
-# 应用更改
-chezmoi apply
+## Template Variables
 
-# 更新到远程
-chezmoi cd
-git add . && git commit -m "更新配置" && git push
-
-# 拉取远程更新
-chezmoi update
+```toml
+# .chezmoi.toml.tmpl → ~/.config/chezmoi/chezmoi.toml
+[data]
+is_server = true   # Mac-mini
+is_work = false    # work-* hostname
 ```
 
-## 配置特性
+## Features
 
-- **模板化**: 使用 `{{ .chezmoi.homeDir }}` 等变量支持多机器
-- **模块化**: Zsh 配置按功能拆分为独立模块 (00-99 数字顺序加载)
-- **安全**: 敏感文件使用 `private_` 前缀自动设置 600 权限
+- **Shell**: fish + starship | zsh + p10k
+- **Runtime**: ServBay (node/python/go/java/rust/ruby/.net)
+- **SSH**: Secretive agent + OrbStack integration
+- **Git**: SSH commit signing + proxy config
 
-## 环境
+## Environment
 
-- macOS (Darwin)
-- Zsh + Oh My Zsh + Powerlevel10k
-- Homebrew
-- Secretive (SSH Agent)
-- OrbStack
+macOS · fish/zsh · Homebrew · ServBay · Secretive · OrbStack
