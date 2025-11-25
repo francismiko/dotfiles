@@ -2,6 +2,31 @@
 # PATH 配置
 # =============================================================================
 
+# ServBay Environment
+# 从 ~/.zshrc.local 迁移，包含 PHP, Node, Python, Go, Java, Rust, Ruby, .NET 等
+set -gx PGHOST "/Applications/ServBay/tmp"
+
+set -l servbay_paths /Applications/ServBay/script/alias /Applications/ServBay/bin /Applications/ServBay/sbin /Applications/ServBay/script /Applications/ServBay/package/python/current/Python.framework/Versions/Current/bin /Applications/ServBay/package/node/current/bin /Applications/ServBay/package/go/current/bin /Applications/ServBay/package/openjdk/current/bin /Applications/ServBay/package/rust/current/bin /Applications/ServBay/package/ruby/current/bin /Applications/ServBay/package/dotnetsdk/current /Applications/ServBay/package/dotnetsdk/current/tools /Applications/ServBay/package/mono/current
+
+for p in $servbay_paths
+    if test -d $p
+        fish_add_path $p
+    end
+end
+
+if test -d $HOME/.dotnet/tools
+    fish_add_path $HOME/.dotnet/tools
+end
+
+# 用户自定义路径
+if test -d $HOME/bin
+    fish_add_path $HOME/bin
+end
+
+if test -d $HOME/.local/bin
+    fish_add_path $HOME/.local/bin
+end
+
 # VS Code CLI
 if test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
     fish_add_path "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
