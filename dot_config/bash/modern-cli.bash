@@ -15,6 +15,7 @@ if command_exists eza; then
     alias ll='eza -l --group-directories-first'
     alias la='eza -la --group-directories-first'
     alias lt='eza --tree --level=2'
+    alias tree='eza --tree'
 fi
 
 # --- bat (cat 替代) ---
