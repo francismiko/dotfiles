@@ -1,54 +1,54 @@
 # =============================================================================
-# 现代化 CLI 工具配置 (Bash)
-# 用于增强 bash 环境，适用于 Claude Code 等 agent
+# 现代化 CLI 工具配置 (Bash/Zsh 兼容)
+# 用于增强 shell 环境，适用于 Claude Code 等 agent
 # 使用函数而非 alias，确保非交互模式下也能工作
 # =============================================================================
 
 # 检查命令是否存在的辅助函数
-command_exists() {
+function command_exists {
     command -v "$1" >/dev/null 2>&1
 }
 
 # --- eza (ls 替代) ---
 if command_exists eza; then
-    ls() { eza --group-directories-first "$@"; }
-    ll() { eza -l --group-directories-first "$@"; }
-    la() { eza -la --group-directories-first "$@"; }
-    lt() { eza --tree --level=2 "$@"; }
-    tree() { eza --tree "$@"; }
+    function ls { eza --group-directories-first "$@"; }
+    function ll { eza -l --group-directories-first "$@"; }
+    function la { eza -la --group-directories-first "$@"; }
+    function lt { eza --tree --level=2 "$@"; }
+    function tree { eza --tree "$@"; }
 fi
 
 # --- bat (cat 替代) ---
 if command_exists bat; then
-    cat() { command bat --paging=never --style=plain "$@"; }
+    function cat { command bat --paging=never --style=plain "$@"; }
     export BAT_THEME="ansi"
 fi
 
 # --- 系统监控 ---
 if command_exists btop; then
-    top() { command btop "$@"; }
+    function top { command btop "$@"; }
 fi
 
 if command_exists dust; then
-    du() { command dust "$@"; }
+    function du { command dust "$@"; }
 fi
 
 if command_exists duf; then
-    df() { command duf "$@"; }
+    function df { command duf "$@"; }
 fi
 
 if command_exists procs; then
-    ps() { command procs "$@"; }
+    function ps { command procs "$@"; }
 fi
 
 # --- 辅助工具 ---
 if command_exists tldr; then
-    help() { command tldr "$@"; }
+    function help { command tldr "$@"; }
 fi
 
 # --- zoxide (智能 cd) ---
 if command_exists zoxide; then
-    eval "$(zoxide init bash)"
+    eval "$(zoxide init zsh 2>/dev/null || zoxide init bash 2>/dev/null)"
 fi
 
 # --- ripgrep 配置 ---
