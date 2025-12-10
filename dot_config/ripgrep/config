@@ -1,0 +1,18 @@
+# ripgrep 配置文件
+# 文档: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+
+# 智能大小写（小写搜索时忽略大小写）
+--smart-case
+
+# 搜索隐藏文件
+--hidden
+
+# 跟随符号链接
+--follow
+
+# 忽略 .git 目录
+--glob=!.git/
+
+# 添加自定义文件类型
+--type-add=web:*.{html,css,js,ts,tsx,jsx,vue,svelte}
+--type-add=config:*.{json,yaml,yml,toml}

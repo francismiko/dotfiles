@@ -37,6 +37,24 @@
 
 [merge]
 	rebase = false
+	conflictstyle = diff3
+
+# Delta - 现代化 diff 工具
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	light = false
+	line-numbers = true
+	side-by-side = false
+	syntax-theme = Monokai Extended
+
+[diff]
+	colorMoved = default
 
 # HTTP/HTTPS 代理配置
 # 用于加速 GitHub 等国外仓库访问
