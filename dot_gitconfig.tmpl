@@ -18,7 +18,7 @@
 	# SSH 签名密钥 (Secretive 管理)
 	# 动态从 Secretive 读取当前机器的公钥
 	# 使用 key:: 前缀格式
-	signingkey = key::{{ output "ssh-add" "-L" | trim }}
+	signingkey = key::{{ output "sh" "-c" "SSH_AUTH_SOCK=/Users/francis/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh ssh-add -L" | trim }}
 
 [commit]
 	# 自动对所有提交进行签名
@@ -31,6 +31,8 @@
 [gpg "ssh"]
 	# 允许的签名者列表文件
 	allowedSignersFile = ~/.gitallowedsigners
+	# SSH 签名程序 (使用包装脚本设置正确的 SSH_AUTH_SOCK)
+	program = ~/.local/bin/ssh-secretive
 
 [pull]
 	rebase = false
