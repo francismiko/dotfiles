@@ -6,4 +6,4 @@
 # 管理: 由 Secretive 自动生成，使用 ssh-add -L 动态获取
 # =============================================================================
 
-1485059943@qq.com {{ output "ssh-add" "-L" | trim }}
+1485059943@qq.com {{ output "sh" "-c" (printf "SSH_AUTH_SOCK=%s/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh ssh-add -L | head -n1" .chezmoi.homeDir) | trim }}

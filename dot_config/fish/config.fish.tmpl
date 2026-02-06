@@ -5,7 +5,10 @@
 # =============================================================================
 
 # SSH Agent (Secretive)
-set -gx SSH_AUTH_SOCK {{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+set -l _secretive_sock {{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+if test -S "$_secretive_sock"
+    set -gx SSH_AUTH_SOCK "$_secretive_sock"
+end
 
 # Homebrew 环境配置
 if test -x /opt/homebrew/bin/brew
@@ -13,7 +16,9 @@ if test -x /opt/homebrew/bin/brew
 end
 
 # OrbStack 集成
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+if test -f ~/.orbstack/shell/init2.fish
+    source ~/.orbstack/shell/init2.fish
+end
 
 # Starship prompt 初始化 (放在配置文件末尾)
 if type -q starship

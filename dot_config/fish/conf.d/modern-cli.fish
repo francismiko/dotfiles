@@ -22,7 +22,7 @@ end
 
 # --- fzf 集成增强 ---
 if type -q fzf; and type -q fd
-    set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+    set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --exclude .git --exclude node_modules --exclude .venv'
     set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-    set -gx FZF_ALT_C_COMMAND 'fd --type d --hidden --follow --exclude .git'
+    set -gx FZF_ALT_C_COMMAND 'fd --type d --hidden --exclude .git --exclude node_modules --exclude .venv'
 end

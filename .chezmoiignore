@@ -11,3 +11,8 @@
 
 # macOS 系统文件
 .DS_Store
+
+# Fish 状态文件 (由 Fish 自身管理)
+.config/fish/fish_variables
+.config/fish/functions/fisher.fish
+.config/fish/completions/fisher.fish

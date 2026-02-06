@@ -7,11 +7,12 @@
 # 搜索隐藏文件
 --hidden
 
-# 跟随符号链接
---follow
-
-# 忽略 .git 目录
+# 忽略常见噪音目录
 --glob=!.git/
+--glob=!node_modules/
+--glob=!.venv/
+--glob=!dist/
+--glob=!target/
 
 # 添加自定义文件类型
 --type-add=web:*.{html,css,js,ts,tsx,jsx,vue,svelte}

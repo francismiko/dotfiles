@@ -16,29 +16,23 @@
 	name = francismiko
 	email = 1485059943@qq.com
 	# SSH 签名密钥 (Secretive 管理)
-	# 动态从 Secretive 读取当前机器的公钥
-	# 使用 key:: 前缀格式
-	signingkey = key::{{ output "sh" "-c" "SSH_AUTH_SOCK=/Users/francis/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh ssh-add -L" | trim }}
+	# 动态从 Secretive 读取当前机器的公钥 (取第一个)
+	signingkey = key::{{ output "sh" "-c" (printf "SSH_AUTH_SOCK=%s/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh ssh-add -L | head -n1" .chezmoi.homeDir) | trim }}
 
 [commit]
-	# 自动对所有提交进行签名
 	gpgsign = true
 
 [gpg]
-	# 使用 SSH 格式签名 (而非传统 GPG)
 	format = ssh
 
 [gpg "ssh"]
-	# 允许的签名者列表文件
 	allowedSignersFile = ~/.gitallowedsigners
-	# SSH 签名程序 (使用包装脚本设置正确的 SSH_AUTH_SOCK)
 	program = ~/.local/bin/ssh-secretive
 
 [pull]
 	rebase = false
 
 [merge]
-	rebase = false
 	conflictstyle = diff3
 
 # Delta - 现代化 diff 工具
@@ -57,14 +51,6 @@
 
 [diff]
 	colorMoved = default
-
-# HTTP/HTTPS 代理配置
-# 用于加速 GitHub 等国外仓库访问
-[https]
-	proxy = http://127.0.0.1:7897
-
-[http]
-	proxy = http://127.0.0.1:7897
 
 # 安全防护配置
 [advice]
