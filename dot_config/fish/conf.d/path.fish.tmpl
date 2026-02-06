@@ -41,6 +41,11 @@ if test -d "$HOME/.local/bin"
     fish_add_path -g "$HOME/.local/bin"
 end
 
+# OpenClaw
+if test -d "$HOME/.openclaw/bin"
+    fish_add_path -g "$HOME/.openclaw/bin"
+end
+
 # VS Code CLI
 if test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
     fish_add_path -g "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
