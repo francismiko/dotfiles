@@ -1,6 +1,9 @@
 
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# Volta
+if [[ -d "$HOME/.volta" ]]; then
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+fi
 
 # 现代化 CLI 工具
 [ -f "$HOME/.config/bash/modern-cli.bash" ] && source "$HOME/.config/bash/modern-cli.bash"

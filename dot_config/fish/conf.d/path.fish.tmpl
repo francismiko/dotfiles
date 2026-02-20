@@ -32,6 +32,11 @@ if test -d /Applications/ServBay
     end
 end
 
+# Volta
+if test -d "$HOME/.volta/bin"
+    fish_add_path -g "$HOME/.volta/bin"
+end
+
 # 用户自定义路径
 if test -d "$HOME/bin"
     fish_add_path -g "$HOME/bin"
