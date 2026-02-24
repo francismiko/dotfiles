@@ -1,6 +1,5 @@
 # =============================================================================
 # 现代化 CLI 工具配置 (Bash/Zsh 兼容)
-# 用于增强 shell 环境，适用于 Claude Code 等 agent
 # 使用函数而非 alias，确保非交互模式下也能工作
 # =============================================================================
 
@@ -18,34 +17,6 @@ if command_exists eza; then
     tree() { eza --tree "$@"; }
 fi
 
-# --- bat (cat 替代) ---
-if command_exists bat; then
-    cat() { command bat --paging=never --style=plain "$@"; }
-    export BAT_THEME="ansi"
-fi
-
-# --- 系统监控 ---
-if command_exists btop; then
-    top() { command btop "$@"; }
-fi
-
-if command_exists dust; then
-    du() { command dust "$@"; }
-fi
-
-if command_exists duf; then
-    df() { command duf "$@"; }
-fi
-
-if command_exists procs; then
-    ps() { command procs "$@"; }
-fi
-
-# --- 辅助工具 ---
-if command_exists tldr; then
-    help() { command tldr "$@"; }
-fi
-
 # --- zoxide (智能 cd) ---
 if command_exists zoxide; then
     if [ -n "$ZSH_VERSION" ]; then
@@ -53,11 +24,6 @@ if command_exists zoxide; then
     elif [ -n "$BASH_VERSION" ]; then
         eval "$(zoxide init bash)"
     fi
-fi
-
-# --- ripgrep 配置 ---
-if command_exists rg; then
-    export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 fi
 
 # --- fzf 集成 ---
