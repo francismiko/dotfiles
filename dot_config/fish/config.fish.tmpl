@@ -4,6 +4,11 @@
 # 说明: 由 chezmoi 管理，conf.d/ 目录下的文件会自动加载
 # =============================================================================
 
+# Ghostty Shell Integration
+if set -q GHOSTTY_RESOURCES_DIR
+    source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
+end
+
 # SSH Agent (Secretive)
 set -l _secretive_sock {{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 if test -S "$_secretive_sock"

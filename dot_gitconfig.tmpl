@@ -27,7 +27,7 @@
 
 [gpg "ssh"]
 	allowedSignersFile = ~/.gitallowedsigners
-	program = ~/.local/bin/ssh-secretive
+	program = {{ .chezmoi.homeDir }}/.local/bin/ssh-secretive
 
 [pull]
 	rebase = false
