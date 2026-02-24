@@ -16,19 +16,3 @@ if command_exists eza; then
     lt()   { eza --tree --level=2 "$@"; }
     tree() { eza --tree "$@"; }
 fi
-
-# --- zoxide (智能 cd) ---
-if command_exists zoxide; then
-    if [ -n "$ZSH_VERSION" ]; then
-        eval "$(zoxide init zsh)"
-    elif [ -n "$BASH_VERSION" ]; then
-        eval "$(zoxide init bash)"
-    fi
-fi
-
-# --- fzf 集成 ---
-if command_exists fzf && command_exists fd; then
-    export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude node_modules --exclude .venv'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git --exclude node_modules --exclude .venv'
-fi
