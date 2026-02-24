@@ -2,7 +2,7 @@
 # PATH 配置
 # =============================================================================
 
-# ServBay Environment
+# ServBay Environment (服务器/数据库服务; 运行时由 mise 管理)
 if test -d /Applications/ServBay
     set -gx PGHOST "/Applications/ServBay/tmp"
 
@@ -10,25 +10,12 @@ if test -d /Applications/ServBay
         /Applications/ServBay/script/alias \
         /Applications/ServBay/bin \
         /Applications/ServBay/sbin \
-        /Applications/ServBay/script \
-        /Applications/ServBay/package/python/current/Python.framework/Versions/Current/bin \
-        /Applications/ServBay/package/node/current/bin \
-        /Applications/ServBay/package/go/current/bin \
-        /Applications/ServBay/package/openjdk/current/bin \
-        /Applications/ServBay/package/rust/current/bin \
-        /Applications/ServBay/package/ruby/current/bin \
-        /Applications/ServBay/package/dotnetsdk/current \
-        /Applications/ServBay/package/dotnetsdk/current/tools \
-        /Applications/ServBay/package/mono/current
+        /Applications/ServBay/script
 
     for p in $servbay_paths
         if test -d "$p"
             fish_add_path -g "$p"
         end
-    end
-
-    if test -d "$HOME/.dotnet/tools"
-        fish_add_path -g "$HOME/.dotnet/tools"
     end
 end
 

@@ -18,4 +18,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
 # SSH Agent 配置 (Secretive)
-export SSH_AUTH_SOCK={{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+_secretive_sock="{{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+if [[ -S "$_secretive_sock" ]]; then
+    export SSH_AUTH_SOCK="$_secretive_sock"
+fi
+unset _secretive_sock

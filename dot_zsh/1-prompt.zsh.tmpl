@@ -10,7 +10,9 @@ if [[ "$TERM_PROGRAM" != "WarpTerminal" ]]; then
     fi
 
     # 加载 Powerlevel10k 主题
-    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+    if [[ -f /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+        source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+    fi
 
     # 加载 Powerlevel10k 配置（如果存在）
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

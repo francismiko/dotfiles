@@ -6,7 +6,9 @@
 # =============================================================================
 
 # Homebrew 环境配置
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # OrbStack 集成
 # Docker 和容器管理工具

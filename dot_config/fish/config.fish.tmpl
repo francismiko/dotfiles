@@ -25,6 +25,11 @@ if test -f ~/.orbstack/shell/init2.fish
     source ~/.orbstack/shell/init2.fish
 end
 
+# mise - 多语言运行时版本管理
+if type -q mise
+    mise activate fish | source
+end
+
 # Starship prompt 初始化 (放在配置文件末尾)
 if type -q starship
     starship init fish | source
