@@ -14,9 +14,6 @@
 # macOS 系统文件
 .DS_Store
 
-# 应用数据目录
-.superset
-
 # Fish 状态文件 (由 Fish 自身管理)
 .config/fish/fish_variables
 .config/fish/functions/fisher.fish
