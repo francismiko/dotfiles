@@ -2,23 +2,6 @@
 # PATH 配置
 # =============================================================================
 
-# ServBay Environment (服务器/数据库服务; 运行时由 mise 管理)
-if test -d /Applications/ServBay
-    set -gx PGHOST "/Applications/ServBay/tmp"
-
-    set -l servbay_paths \
-        /Applications/ServBay/script/alias \
-        /Applications/ServBay/bin \
-        /Applications/ServBay/sbin \
-        /Applications/ServBay/script
-
-    for p in $servbay_paths
-        if test -d "$p"
-            fish_add_path -g "$p"
-        end
-    end
-end
-
 # 用户自定义路径
 if test -d "$HOME/bin"
     fish_add_path -g "$HOME/bin"
