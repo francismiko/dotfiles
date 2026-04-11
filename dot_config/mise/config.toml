@@ -1,7 +1,14 @@
+[settings]
+yes = true
+python.uv_venv_auto = true
+install_before = "7d"
+
 [tools]
+biome = "latest"
 bun = "latest"
 go = "latest"
 node = "latest"
 pnpm = "latest"
 python = "latest"
 rust = "latest"
+uv = "latest"

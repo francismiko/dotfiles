@@ -1,25 +1,46 @@
-# =============================================================================
-# .zshrc - Zsh 主配置文件 (chezmoi 模板)
-#
-# 模板变量:
-#   .chezmoi.hostname  - 当前主机名 ({{ .chezmoi.hostname }})
-#   .chezmoi.username  - 当前用户名 ({{ .chezmoi.username }})
-#   .chezmoi.os        - 操作系统 ({{ .chezmoi.os }})
-#   .is_server         - 是否为服务器 ({{ .is_server }})
-#   .is_work           - 是否为工作电脑 ({{ .is_work }})
-#
-# 使用说明:
-#   - 此文件是模板，会根据不同机器生成配置
-#   - 修改请使用: chezmoi edit ~/.zshrc
-# =============================================================================
+# 历史
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY HIST_VERIFY
+HISTORY_IGNORE="(* --token *|*TOKEN=*|*PASSWORD=*|*SECRET=*|*API_KEY=*|*Bearer *|*Authorization:*|*PRIVATE*KEY*|*ghp_*|*sk-*)"
 
-# 加载所有配置模块
-# 按数字顺序加载,确保依赖关系正确
-if [[ -d "$HOME/.zsh" ]]; then
-    for config_file in $HOME/.zsh/*.zsh(N); do
-        source "$config_file"
-    done
-fi
+# 选项
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS NO_CLOBBER INTERACTIVE_COMMENTS NO_FLOW_CONTROL
 
-# 本地个性化配置(可选,不提交到版本控制)
-[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+# 安全粘贴
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+# 快捷键
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+
+# PATH
+path=($HOME/.local/bin $path)
+
+# SSH (Secretive)
+[[ -S "{{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" ]] \
+    && export SSH_AUTH_SOCK="{{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+
+# 别名
+(( $+commands[eza] )) && alias ls='eza --icons --group-directories-first' \
+    la='eza -la --icons --group-directories-first --git' \
+    ll='eza -l --icons --group-directories-first --git' \
+    lt='eza --tree --icons --level=2' tree='eza --tree --icons'
+
+# 集成
+[[ -n "$GHOSTTY_RESOURCES_DIR" ]] && source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-shell-integration.zsh"
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
+
+# Starship
+(( $+commands[starship] )) && eval "$(starship init zsh)"
+
+# zoxide
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
+
+# 插件（放最后）
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+source /opt/homebrew/share/zsh-autopair/autopair.zsh 2>/dev/null
